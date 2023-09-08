@@ -1,7 +1,9 @@
+from typing import Dict
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import torch
-
+import torch.nn.functional as F
 from diffusers import (
     AutoencoderKL,
     DDPMScheduler,
@@ -10,12 +12,9 @@ from diffusers import (
 from diffusers.utils.import_utils import is_xformers_available
 from ray.data import read_images
 from ray.data.preprocessors import TorchVisionPreprocessor
-import torch.nn.functional as F
 from torchvision import transforms
 from transformers import AutoTokenizer
 from transformers import CLIPTextModel
-from torchvision import transforms
-from typing import Dict
 
 
 def get_train_dataset(
