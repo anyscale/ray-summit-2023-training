@@ -9,6 +9,7 @@
 <a href="https://twitter.com/raydistributed"><img src="https://img.shields.io/twitter/follow/raydistributed?label=Follow" alt="twitter"></a>
 
 ## Overview
+
 The deep dive into Ray Core provides you with an extensive and practical understanding of the Ray Core concepts. Throughout the course, you will understand Ray’s architecture, API components (tasks, actors, objects), core services and observability tooling that enable simple scaling of Python and ML applications. During thoughtful discussion, we will share best practices and recommended techniques validated by industry experts.
 
 With this hands-on understanding of Ray Core, you'll be able to apply this knowledge to tackle challenging scaling problems and deliver robust solutions that meet your organization's needs.
