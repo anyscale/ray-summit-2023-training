@@ -2,7 +2,7 @@
 
 © 2023, Anyscale Inc. All Rights Reserved
 
-<img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/ray-summit-2023/mp.png" width="60%" loading="lazy">
+<img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/ray-summit-2023/mp.png" width="70%" loading="lazy">
 
 <a href="https://forms.gle/9TSdDYUgxYs8SA9e8"><img src="https://img.shields.io/badge/Ray-Join%20Slack-blue" alt="join-ray-slack"></a>
 <a href="https://discuss.ray.io/"><img src="https://img.shields.io/badge/Discuss-Ask%20Questions-blue" alt="discuss"></a>
@@ -13,15 +13,21 @@ Learn how to use Hugging Face and LangChain, how to apply transformers and diffu
 ## Overview
 
 ### Morning sessions
-1. Implementing a production MLOps pipeline to deliver end-to-end ML applications at scale
-2. Learn How to Build and Productionize LLM-Powered Applications with Ray and Anyscale
-3. Introduction to Ray AI Libraries for Deep Learning
+
+| Time (PDT)       | Session                                                                                                                                                   | Speaker |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| 9:00am - 12:00pm | [Implementing a production MLOps pipeline to deliver end-to-end ML applications at scale]()                                                               | []()    |
+| 9:00am - 12:00pm | [Learn How to Build and Productionize LLM-Powered Applications with Ray and Anyscale](https://github.com/anyscale/ray-summit-2023-training/tree/main/LLM) | []()    |
+| 9:00am - 12:00pm | [Introduction to Ray AI Libraries for Deep Learning](https://github.com/anyscale/ray-summit-2023-training/tree/main/Ray_AI_Libraries)                     | []()    |
+
 
 ### Afternoon sessions
-1. Ray Core Deep Dive: API, Architectures and Best Practices
-2. Practical Data and Evaluation Considerations for Building Production-Ready LLM Applications with LlamaIndex and Ray
-3. Real-time ML - Deploying Online Inference Pipelines
-4. GenAI - Fine-tuning and Deploying Stable Diffusion Models with Ray and Anyscale
+| Time (PDT)      | Session                                                                                                                                                                                              | Speaker |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| 1:00pm - 4:00pm | [Ray Core Deep Dive: API, Architectures and Best Practices](https://github.com/anyscale/ray-summit-2023-training/tree/main/Ray_Core)                                                                 | []()    |
+| 1:00pm - 4:00pm | [Practical Data and Evaluation Considerations for Building Production-Ready LLM Applications with LlamaIndex and Ray](https://github.com/anyscale/ray-summit-2023-training/tree/main/Ray-LlamaIndex) | []()    |
+| 1:00pm - 4:00pm | [Real-time ML - Deploying Online Inference Pipelines](https://github.com/anyscale/ray-summit-2023-training/tree/main/Ray_Serve)                                                                      | <img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/Ray_Serve/Ray-Thumbnail-Adam.png" width="71%" loading="lazy"> |
+| 1:00pm - 4:00pm | [GenAI - Fine-tuning and Deploying Stable Diffusion Models with Ray and Anyscale](https://github.com/anyscale/ray-summit-2023-training/tree/main/GenAI)                                              | []()    |
 
 ## Connect with the Ray community
 
