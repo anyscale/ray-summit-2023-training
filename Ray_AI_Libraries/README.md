@@ -2,7 +2,7 @@
 
 © 2023, Anyscale Inc. All Rights Reserved
 
-<img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/Ray_AI_Libraries/Ray+AI+Libraries.png" width="70%" loading="lazy">
+<img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/ray-summit-2023/emmy-dl.png" width="70%" loading="lazy">
 
 <a href="https://forms.gle/9TSdDYUgxYs8SA9e8"><img src="https://img.shields.io/badge/Ray-Join%20Slack-blue" alt="join-ray-slack"></a>
 <a href="https://discuss.ray.io/"><img src="https://img.shields.io/badge/Discuss-Ask%20Questions-blue" alt="discuss"></a>

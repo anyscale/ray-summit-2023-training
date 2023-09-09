@@ -2,8 +2,7 @@
 
 © 2023, Anyscale Inc. All Rights Reserved
 
-![Dreambooth fine-tuning sample results](https://raw.githubusercontent.com/ray-project/ray/workspace_templates_2.6.1/doc/source/templates/05_dreambooth_finetuning/dreambooth/images/dreambooth_example.png)
-
+<img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/genai/Ray-Thumbnail-Emmy.png" width="70%" loading="lazy">
 
 <a href="https://forms.gle/9TSdDYUgxYs8SA9e8"><img src="https://img.shields.io/badge/Ray-Join%20Slack-blue" alt="join-ray-slack"></a>
 <a href="https://discuss.ray.io/"><img src="https://img.shields.io/badge/Discuss-Ask%20Questions-blue" alt="discuss"></a>
@@ -14,10 +13,12 @@
 Text-to-image models (like Stable Diffusion) have revolutionized the landscape of AI-based applications by introducing the ability to synthesize incredibly realistic and coherent images. However, using these models is difficult due to a number of challenges including:
 
 - Compute requirements, including mix of CPU and GPU instances,\
-- The need to stitch together fine tuning with inference and model deployment for more end-to-end MLOps experience,\
+- The need to stitch together fine-tuning with inference and model deployment for more end-to-end MLOps experience,\
 - The requirement for a capable infrastructure to successfully deploy these models.
 
 This hands-on training aims to address these challenges and demonstrate, in a practical manner, how to fine-tune stable diffusion models, execute batch inference to generate additional images, and ultimately deploy the model within a production-ready environment.
+
+<img src="https://raw.githubusercontent.com/ray-project/ray/workspace_templates_2.6.1/doc/source/templates/05_dreambooth_finetuning/dreambooth/images/dreambooth_example.png" width="70%" loading="lazy">
 
 ## Learning Outcomes
 
