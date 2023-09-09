@@ -2,7 +2,7 @@
 
 © 2023, Anyscale Inc. All Rights Reserved
 
-<img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/LLMs/RAG-system-architecture.jpg" width="60%" loading="lazy">
+<img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/ray-summit-2023/adam-llms.png" width="70%" loading="lazy">
 
 <a href="https://forms.gle/9TSdDYUgxYs8SA9e8"><img src="https://img.shields.io/badge/Ray-Join%20Slack-blue" alt="join-ray-slack"></a>
 <a href="https://discuss.ray.io/"><img src="https://img.shields.io/badge/Discuss-Ask%20Questions-blue" alt="discuss"></a>
@@ -13,6 +13,10 @@
 Learn to build LLM-powered apps with Python and learn to scale and deploy them with Ray using open-source models.
 
 In this workshop, you'll learn the why as well as the how, as you gain hands-on experience implementing common designs for LLM systems including the retrieval-augmented generation ("RAG") patterns that power the most successful AI apps.
+
+You will build application with the following architecture
+
+<img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/LLMs/RAG-system-architecture.jpg" width="70%" loading="lazy">
 
 We'll cover all of the fundamentals as well as demystify the more advanced operational elements like dealing with large datasets (think: an archive of customer service interactions or insurance claims), autoscaling on GPUs, and more.
 
