@@ -1,5 +1,6 @@
 import openai
 import re
+import numpy as np
 from tqdm import tqdm
 
 from llama_index.evaluation import CorrectnessEvaluator
@@ -40,6 +41,10 @@ def evaluate_retrieval(
     return results
 
 
+def get_hit_rate(results):
+    return np.mean([r["is_hit"] for r in results])
+
+
 def evaluate_e2e(
     llama_index_query_engine, 
     queries, 
@@ -74,3 +79,7 @@ def evaluate_e2e(
         eval_results.append(eval_result)
     
     return eval_results
+
+
+def get_mean_score(results):
+    return np.mean([r.score for r in results])

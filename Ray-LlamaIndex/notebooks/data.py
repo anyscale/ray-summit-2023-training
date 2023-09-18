@@ -86,7 +86,7 @@ class StoreResults:
         return {}
 
     
-def index_data(docs_path, embedding_model_name, chunk_size, chunk_overlap):
+def build_index(docs_path, embedding_model_name, chunk_size, chunk_overlap):
     ds = ray.data.from_items(
         [{"path": path} for path in docs_path.rglob("*.html") if not path.is_dir()]
     )

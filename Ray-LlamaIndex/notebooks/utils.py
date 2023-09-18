@@ -8,6 +8,7 @@ from llama_index.vector_stores import PGVectorStore
 from llama_index import VectorStoreIndex, ServiceContext
 from llama_index.llms import Anyscale, OpenAI
 
+
 def get_embedding_model(model_name):
     if model_name == "text-embedding-ada-002":
             return OpenAIEmbeddings(
@@ -24,7 +25,6 @@ def get_embedding_model(model_name):
             encode_kwargs=encode_kwargs)
     
 
-
 def get_postgres_store():
     return PGVectorStore.from_params(
             database="postgres", 
@@ -35,6 +35,7 @@ def get_postgres_store():
             port="5432",
             embed_dim=768,
         )
+    
     
 def _get_vector_store_index(
     service_context,
@@ -62,6 +63,7 @@ def get_query_engine(
 
     index = _get_vector_store_index(service_context)
     return index.as_query_engine(similarity_top_k=similarity_top_k)
+
 
 def get_retriever(    
     embedding_model_name = "thenlper/gte-base",
