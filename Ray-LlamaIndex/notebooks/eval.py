@@ -1,10 +1,21 @@
 import openai
 import re
+import numpy as np
+from tqdm import tqdm
 
-def evaluate_retrieval(llama_index_retriever, queries, golden_sources):
+from llama_index.evaluation import CorrectnessEvaluator
+from llama_index.llms import OpenAI
+from llama_index import ServiceContext
+
+
+def evaluate_retrieval(
+    llama_index_retriever, 
+    queries, 
+    golden_sources
+):
     results = []
 
-    for query, expected_source in zip(queries, golden_sources):
+    for query, expected_source in tqdm(list(zip(queries, golden_sources))):
         retrieved_nodes = llama_index_retriever.retrieve(query)
         retrieved_sources = [node.metadata['source'] for node in retrieved_nodes]
         
@@ -29,76 +40,46 @@ def evaluate_retrieval(llama_index_retriever, queries, golden_sources):
         results.append(result)
     return results
 
-def _generate_response(llm_name, 
-                      temperature, 
-                      system_content, 
-                      user_content):
-    
-    response = openai.ChatCompletion.create(
-        model=llm_name,
-        temperature=temperature,
-        messages=[
-                {"role": "system", "content": system_content},
-                {"role": "assistant", "content": ""},
-                {"role": "user", "content": user_content},
-            ],)
-    return response["choices"][-1]["message"]["content"]
 
-def _parse_response(response):
-    # Define regular expressions for extracting values
-    score_pattern = r'"score"\s*:\s*([0-9]+)'
-    reasoning_pattern = r'"reasoning"\s*:\s*"([^"]*)"'
+def get_hit_rate(results):
+    return np.mean([r["is_hit"] for r in results])
 
-    # Extract values using regular expressions
-    score_match = re.search(score_pattern, response)
-    reasoning_match = re.search(reasoning_pattern, response)
 
-    # Convert
-    if score_match and reasoning_match:
-        score = float(score_match.group(1))
-        reasoning = reasoning_match.group(1)
-        return {"score": score, "reasoning": reasoning}
-
-    return {"score": "", "reasoning": ""}
-
-def evaluate_e2e(llama_index_query_engine, queries, golden_responses):
+def evaluate_e2e(
+    llama_index_query_engine, 
+    queries, 
+    golden_responses, 
+    llm=None,
+    verbose=False,
+):
+    # run inference
+    if verbose:
+        print('Running inference')
+        
     generated_responses_str = []
-
-    for query in queries:
+    for query in tqdm(queries):
         response = llama_index_query_engine.query(query)
         generated_responses_str.append(response.response)
-    
-    
-    # Evaluation prompt
-    system_content = """
-        "You are given a query, a reference answer, and a candidate answer.
-        You must {score} the candidate answer between 1 and 5 on how well it answers the query, 
-        using the reference answer as the golden truth.
-        You must return your response in a line with only the score.
-        Do not add any more details.
-        On a separate line provide your {reasoning} for the score as well.
-        Return your response following the exact format outlined below.
-        All of this must be in a valid JSON format.
-        
-        {"score": score,
-        "reasoning": reasoning}
-        """
 
-    evaluation_scores = []
-    llm_name = "gpt-4"
-    max_context_length = 8192
+    # setup evaluator
+    eval_llm = llm or OpenAI(model='gpt-4', temperature=0.0)
+    service_context = ServiceContext.from_defaults(llm=eval_llm)
+    evaluator = CorrectnessEvaluator(service_context=service_context)
 
-
-    for query, generated_answer, golden_answer in zip(queries, generated_responses_str, golden_responses):
+    # run evaluation
+    if verbose:
+        print('Running eval')
         
-        context_length = max_context_length - len(system_content)
-        user_content = f"The query is {query}, the reference answer is {golden_answer}, and the candidate answer is {generated_answer}"[:context_length]
-        
-        response = _generate_response(llm_name, temperature=0.0, system_content=system_content, user_content=user_content)
-        parsed_response = _parse_response(response)
-        parsed_response["query"] = query
-        parsed_response["generated_response"] = generated_answer
-        parsed_response["golden_response"] = golden_answer
-        evaluation_scores.append(parsed_response)
+    eval_results = []
+    for query, rag_response, golden_response in tqdm(list(zip(queries, generated_responses_str, golden_responses))):
+        eval_result = evaluator.evaluate(
+            query=query, 
+            reference=golden_response, 
+            response=rag_response)
+        eval_results.append(eval_result)
     
-    return evaluation_scores
+    return eval_results
+
+
+def get_mean_score(results):
+    return np.mean([r.score for r in results])
