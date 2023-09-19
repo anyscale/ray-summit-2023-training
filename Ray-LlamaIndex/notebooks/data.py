@@ -1,5 +1,6 @@
 import numpy as np
 
+import os
 import ray
 from ray.data import ActorPoolStrategy
 from ray.util.scheduling_strategies import NodeAffinitySchedulingStrategy
@@ -10,6 +11,11 @@ from llama_index.readers import HTMLTagReader
 from llama_index.vector_stores import PGVectorStore
 from llama_index.node_parser import SimpleNodeParser
 
+EMBEDDING_DIMENSIONS = {
+    'thenlper/gte-base': 768,
+    'BAAI/bge-large-en': 1024,
+    'text-embedding-ada-002': 1536
+}
 
 def path_to_uri(path, scheme="https://", domain="docs.ray.io"):
     # Converts the file path of a Ray documentation page to the original URL for the documentation.
@@ -64,7 +70,7 @@ class EmbedChunks:
         return {"embedded_nodes": nodes}
 
 
-def get_postgres_store():
+def get_postgres_store(embed_dim=768):
     return PGVectorStore.from_params(
             database="postgres", 
             user="postgres", 
@@ -72,13 +78,13 @@ def get_postgres_store():
             host="localhost", 
             table_name="document",
             port="5432",
-            embed_dim=768,
+            embed_dim=embed_dim,
         )
 
 
 class StoreResults:
-    def __init__(self):
-        self.vector_store = get_postgres_store()
+    def __init__(self, embed_dim=768):
+        self.vector_store = get_postgres_store(embed_dim)
     
     def __call__(self, batch):
         embedded_nodes = batch["embedded_nodes"]
@@ -111,8 +117,10 @@ def build_index(docs_path, embedding_model_name, chunk_size, chunk_overlap):
         compute=ActorPoolStrategy(size=2))
 
     # Index data
+    embed_dim=EMBEDDING_DIMENSIONS[embedding_model_name]
     embedded_chunks.map_batches(
         StoreResults,
+        fn_constructor_kwargs={"embed_dim": embed_dim},
         batch_size=128,
         num_cpus=1,
         compute=ActorPoolStrategy(size=8),
