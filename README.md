@@ -10,6 +10,9 @@
 
 Learn how to use Hugging Face and LangChain, how to apply transformers and diffusion models, and how to build and deploy AI applications. Level up your skills through hands-on training sessions with the builders, makers, and maintainers of Ray. Exclusive to Ray Summit attendees.
 
+Make sure to visit [**Self-paced Learning Platform**](https://training.anyscale.com/) to access more resources, including production-ready implementations of LLMs and Generative AI use cases.
+
+
 ## Overview
 
 ### Morning sessions
@@ -31,17 +34,24 @@ Learn how to use Hugging Face and LangChain, how to apply transformers and diffu
 
 ## Connect with the Ray community
 
-You can learn and get more involved with the Ray community of developers and researchers:
+You can learn and get more involved with the Ray community of developers:
+
+* [**Self-paced Learning Platform**](https://training.anyscale.com/)
+
+  Access the latest resources, including production-ready implementations of LLMs and Generative AI use cases.
 
 * [**Ray documentation**](https://docs.ray.io/en/latest)
 
 * [**Official Ray site**](https://www.ray.io/)
-Browse the ecosystem and use this site as a hub to get the information that you need to get going and building with Ray.
+
+  Browse the ecosystem and use this site as a hub to get the information that you need to get going and building with Ray.
 
 * [**Join the community on Slack**](https://forms.gle/9TSdDYUgxYs8SA9e8)
-Find friends to discuss your new learnings in our Slack space.
+
+  Find friends to discuss your new learnings in our Slack space.
 
 * [**Use the discussion board**](https://discuss.ray.io/)
-Ask questions, follow topics, and view announcements on this community forum.
+
+  Ask questions, follow topics, and view announcements on this community forum.
 
 <img src="https://technical-training-assets.s3.us-west-2.amazonaws.com/Generic/ray_logo.png" width="30%" loading="lazy">
