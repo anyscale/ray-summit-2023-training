@@ -85,8 +85,7 @@ class StoreResults:
         self.vector_store.add(list(embedded_nodes))
         return {}
 
-    
-def build_index(docs_path, embedding_model_name, chunk_size, chunk_overlap):
+def create_nodes(docs_path, chunk_size, chunk_overlap):
     ds = ray.data.from_items(
         [{"path": path} for path in docs_path.rglob("*.html") if not path.is_dir()]
     )
@@ -102,6 +101,11 @@ def build_index(docs_path, embedding_model_name, chunk_size, chunk_overlap):
 
     chunks_ds = sections_ds.flat_map(chunk_document, scheduling_strategy=NodeAffinitySchedulingStrategy(node_id=ray.get_runtime_context().get_node_id(), soft=False))
 
+    return chunks_ds
+    
+def build_index(docs_path, embedding_model_name, chunk_size, chunk_overlap):
+
+    chunks_ds = create_nodes(docs_path, chunk_size, chunk_overlap)
 
     embedded_chunks = chunks_ds.map_batches(
         EmbedChunks,
